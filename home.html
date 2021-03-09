@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>好房網</title>
+  <link rel="stylesheet" href="all.css" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <div class="nav">
+      <div class="border rounded-lg px-1" style="padding-top: 2px;">
+        <button
+          class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer p-1 items-center hover:bg-gray-200"
+          type="button" @click="selectedPre">
+          <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <div class="border-r inline-flex h-6"></div>
+        <button
+          class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer p-1 hover:bg-gray-200"
+          type="button" @click="selectedNext">
+          <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+      <ul>
+        <li v-for="(item, key) in data['page' + pagination.currentPage]" :key="key">
+          <div class="home">
+            <section class="home-box">
+              <div class="home-img" :style="{backgroundImage: `url(${item.CoverPic})`}"></div>
+              <div class="home-nav">
+                <h1>{{item.Address.substr(0,6)}}</h1>
+                <h2>{{item.CaseName}}</h2>
+                <div class="d-flex home-sync">
+                  <p>{{item.Patterns}}</p>
+                  <p>{{item.RegArea}}坪</p>
+                </div>
+                <div class="d-flex home-total">
+                  <del>{{Math.round(item.UnitPrice * item.RegArea)}}萬</del>
+                  <p>{{item.Price}}<span>萬</span></p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>
