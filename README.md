@@ -7,6 +7,11 @@
   將JSON資料整理為上圖所示
   並5筆為一個頁面
   必須使用Selected切換頁面
+
+## 解法
+getData的處理資料中，原本是使用字串型別的解法
+這邊新增了Array的解法
+![](https://img.onl/Z61GUs)
   
 ## 使用技術
 + Vue
