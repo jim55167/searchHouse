@@ -3,10 +3,10 @@ const app = new Vue({
   data: {
     data: {},
     pagination: {
-      totalResult: 0,
-      currentPage: 1,
-      pageTotal: 0,
-      perPage: 5
+      totalResult: 0, //總筆數
+      currentPage: 1, //當前頁數
+      pageTotal: 0, //總頁數
+      perPage: 5 //一頁幾筆資料
     },
   },
   created() {
@@ -26,6 +26,20 @@ const app = new Vue({
                 element.UnitPrice = newStr
               } 
           })
+        // let metersIndex;
+        // let meters;
+        // filter.forEach(item => {
+        //   if (typeof item.UnitPrice === 'string') {
+        //     let arr = item.UnitPrice.split('/')
+        //     arr.forEach(item => {
+        //       if (item.indexOf('萬') > -1) {
+        //           metersIndex = item.indexOf('萬')
+        //           meters = item.substring(0, metersIndex).split('萬');
+        //       }             
+        //     })
+        //     item.UnitPrice = Number(meters)
+        //   }
+        // })
           this.pagination.totalResult = filter.length
           this.pagination.pageTotal = Math.ceil(filter.length / this.pagination.perPage)
           let pageData = {}
@@ -33,7 +47,6 @@ const app = new Vue({
             if (filter.length > this.pagination.perPage) {
               let perPageData =filter.slice(0, this.pagination.perPage)
               pageData['page' + (i + 1)] = perPageData
-              console.log(pageData, perPageData);
               filter.splice(0, this.pagination.perPage)
             } else {
               let perPageData =filter.slice(0, filter.length)
@@ -42,7 +55,6 @@ const app = new Vue({
             }
           }
           this.data = pageData
-          // console.log(this.data);
         })
     },
     selectedPre () {
